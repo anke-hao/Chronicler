@@ -1,4 +1,4 @@
-# AI-Powered Changelog Generator
+# Chronicler: AI-Powered Changelog Generator
 
 A developer tool that automatically generates user-friendly changelogs from Git commits using AI, with a public-facing website for end users.
 
