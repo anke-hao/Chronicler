@@ -2,6 +2,8 @@
 
 A developer tool that automatically generates user-friendly changelogs from Git commits using AI, with a public-facing website for end users.
 
+_**Tools used:**_ Windsurf/Claude Sonnet 4
+
 ## Features
 
 - **Developer CLI Tool**: Generate changelogs from Git commits with a single command
