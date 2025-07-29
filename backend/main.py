@@ -13,15 +13,21 @@ import json
 from datetime import datetime, date
 import logging
 from pathlib import Path
+from dotenv import load_dotenv
+
+load_dotenv(dotenv_path="../.env")
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 app = FastAPI(
-    title="AI Changelog Generator",
+    title="Chronicler",
     description="Generate user-friendly changelogs from Git commits using AI",
-    version="1.0.0"
+    version="1.0.0",
+    docs_url="/api/docs",
+    redoc_url="/api/redoc",
+    openapi_url="/api/openapi.json"
 )
 
 # CORS middleware
@@ -34,9 +40,10 @@ app.add_middleware(
 )
 
 # Initialize OpenAI
-openai.api_key = os.getenv("OPENAI_API_KEY")
-if not openai.api_key:
+openai_api_key = os.getenv("OPENAI_API_KEY")
+if not openai_api_key:
     logger.warning("OPENAI_API_KEY not set. AI features will be disabled.")
+    client = None
 
 # Database setup
 DB_PATH = "changelog.db"
@@ -190,7 +197,7 @@ def filter_commits(commits: List[CommitInfo], exclude_patterns: List[str]) -> Li
 
 def generate_ai_changelog(commits: List[CommitInfo]) -> str:
     """Use OpenAI to generate user-friendly changelog"""
-    if not openai.api_key:
+    if not openai_api_key:
         # Fallback to simple formatting if no API key
         logger.error("No OpenAI API key found. Falling back to simple changelog generation.")
         return generate_simple_changelog(commits)
@@ -204,7 +211,7 @@ def generate_ai_changelog(commits: List[CommitInfo]) -> str:
         # Using the new OpenAI API format (v1.0.0+)
         client = OpenAI()
         response = client.chat.completions.create(
-            model="gpt-4",
+            model="gpt-4o",
             messages=[
                 {"role": "system", "content": "You are an expert technical writer specializing in user-facing changelogs for developer tools."},
                 {"role": "user", "content": CHANGELOG_PROMPT.format(commits=commits_text)}

@@ -1,4 +1,4 @@
-# AI Changelog Generator - Project Structure
+# Chronicler - Project Structure
 
 ## Directory Structure
 

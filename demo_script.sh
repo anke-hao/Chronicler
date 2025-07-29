@@ -1,11 +1,11 @@
 #!/bin/bash
 
-# AI Changelog Generator Demo Script
+# Chronicler Demo Script
 # This script demonstrates the complete workflow
 
 set -e
 
-echo "🚀 AI Changelog Generator Demo"
+echo "🚀 Chronicler Demo"
 echo "================================"
 
 # Colors for output
@@ -41,6 +41,11 @@ fi
 if ! command -v docker-compose &> /dev/null; then
     print_error "Docker Compose is not installed. Please install Docker Compose first."
     exit 1
+fi
+
+# Load environment variables from .env file
+if [ -f .env ]; then
+    export $(cat .env | grep -v '^#' | xargs)
 fi
 
 # Check if OpenAI API key is set

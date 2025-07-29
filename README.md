@@ -35,7 +35,7 @@ _**Tools used:**_ Windsurf/Claude Sonnet 4
 
 ## Installation
 
-You can set up the AI Changelog Generator using either Docker (recommended) or a local installation.
+You can set up Chronicler, the AI-powered changelog generator, using either Docker (recommended) or a local installation.
 
 ### Prerequisites
 

@@ -190,14 +190,14 @@ const App: React.FC = () => {
                 <Zap className="w-5 h-5 text-white" />
               </div>
               <div>
-                <h1 className="text-2xl font-bold text-gray-900">Changelog</h1>
+                <h1 className="text-2xl font-bold text-gray-900">Chronicler</h1>
                 <p className="text-sm text-gray-600">Stay updated with our latest changes</p>
               </div>
             </div>
             
             <div className="flex items-center space-x-4">
               <a 
-                href="https://github.com/your-repo" 
+                href="https://github.com/anke-hao/Chronicler" 
                 className="text-gray-500 hover:text-gray-700 transition-colors"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -302,9 +302,9 @@ const App: React.FC = () => {
           <div className="text-center text-sm text-gray-500">
             <p>
               Generated with{' '}
-              <span className="font-medium text-gray-900">AI Changelog Generator</span>
+              <span className="font-medium text-gray-900">Chronicler</span>
               {' • '}
-              <a href="https://github.com/your-repo" className="text-blue-600 hover:text-blue-800">
+              <a href="https://github.com/anke-hao/Chronicler" className="text-blue-600 hover:text-blue-800">
                 View on GitHub
               </a>
             </p>
