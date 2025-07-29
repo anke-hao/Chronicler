@@ -137,7 +137,7 @@ def get_db():
     conn.row_factory = sqlite3.Row
     return conn
 
-def get_git_commits(repo_path: str, days: int = None, from_commit: str = None, to_commit: str = None) -> List[CommitInfo]:
+def get_git_commits(repo_path: str, days: int = 7, from_commit: str = None, to_commit: str = None) -> List[CommitInfo]:
     """Extract commits from Git repository"""
     try:
         repo = git.Repo(repo_path)
@@ -150,15 +150,12 @@ def get_git_commits(repo_path: str, days: int = None, from_commit: str = None, t
         # Get commits between specific hashes
         commit_range = f"{from_commit}..{to_commit}"
         git_commits = list(repo.iter_commits(commit_range))
-    elif days:
-        # Get commits from last N days
+    else:
+        # Get commits from last N days (default is 7)
         from datetime import timedelta
         since_date = datetime.now().replace(hour=0, minute=0, second=0, microsecond=0)
         since_date = since_date - timedelta(days=days)
         git_commits = list(repo.iter_commits(since=since_date))
-    else:
-        # Default to last 20 commits
-        git_commits = list(repo.iter_commits(max_count=20))
     
     for commit in git_commits:
         # Get files changed in this commit
